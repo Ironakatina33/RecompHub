@@ -1,0 +1,45 @@
+name: Publier RecompHub Windows
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION: 1.3.${{ github.run_number }}
+      TAG: v1.3.${{ github.run_number }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.x'
+      - name: Compiler pour Windows
+        run: |
+          mkdir -p dist
+          GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="-H windowsgui -s -w -X main.releaseRepo=${GITHUB_REPOSITORY} -X main.version=${VERSION}" -o dist/RecompHub.exe RecompHub-GitHub/main.go
+      - name: Préparer la mise à jour
+        run: |
+          python3 - <<'PY'
+          import os, json, hashlib, zipfile
+          from pathlib import Path
+          exe = Path('dist/RecompHub.exe')
+          manifest = {
+              'version': os.environ['VERSION'],
+              'url': f"https://github.com/{os.environ['GITHUB_REPOSITORY']}/releases/download/{os.environ['TAG']}/RecompHub.exe",
+              'sha256': hashlib.sha256(exe.read_bytes()).hexdigest(),
+              'notes': 'Nouvelle version de RecompHub.'
+          }
+          Path('dist/latest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
+          with zipfile.ZipFile('dist/RecompHub-Windows.zip', 'w', zipfile.ZIP_DEFLATED) as z:
+              z.write(exe, 'RecompHub.exe')
+              z.write('RecompHub-GitHub/LISEZ-MOI.txt', 'LISEZ-MOI.txt')
+              z.write('RecompHub-GitHub/Diagnostic-RecompHub.cmd', 'Diagnostic-RecompHub.cmd')
+          PY
+      - name: Publier la version
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$TAG" dist/RecompHub.exe dist/RecompHub-Windows.zip dist/latest.json --title "RecompHub $VERSION" --notes "Version Windows avec mises à jour intégrées." --latest --target "$GITHUB_SHA"

@@ -1,4 +1,4 @@
-name: RecompHub v3 - Windows release
+name: RecompHub v4 - Windows release
 on:
   push:
     branches: [main]
@@ -23,13 +23,13 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.23.x'
-      - name: Compiler RecompHub v3
+      - name: Compiler RecompHub v4
         env:
           REPO: ${{ github.repository }}
           RUN_NUMBER: ${{ github.run_number }}
         run: |
           set -eu
-          VERSION="3.0.${RUN_NUMBER}"
+          VERSION="4.0.${RUN_NUMBER}"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "TAG=v$VERSION" >> "$GITHUB_ENV"
           mkdir -p dist
@@ -49,7 +49,7 @@ jobs:
               'version':version,
               'url':f'https://github.com/{repo}/releases/download/{tag}/RecompHub.exe',
               'sha256':hashlib.sha256(exe.read_bytes()).hexdigest(),
-              'notes':'Thèmes console XMB/Wii, barre personnalisée et boutique GitHub.'
+              'notes':'Interface XMB et Wii repensée, navigation console et boutique GitHub.'
           }
           Path('dist/latest.json').write_text(json.dumps(manifest, indent=2),encoding='utf-8')
           with zipfile.ZipFile('dist/RecompHub-Windows.zip','w',zipfile.ZIP_DEFLATED) as z:
@@ -64,5 +64,5 @@ jobs:
           gh release create "$TAG" \
             dist/RecompHub.exe dist/RecompHub-Windows.zip dist/latest.json \
             --title "RecompHub $VERSION" \
-            --notes "Thèmes console profonds, boutique officielle GitHub, bibliothèque conservée." \
+            --notes "Hommages XMB et chaînes Wii, fenêtre personnalisée, boutique GitHub, bibliothèque conservée." \
             --latest --target "$GITHUB_SHA"

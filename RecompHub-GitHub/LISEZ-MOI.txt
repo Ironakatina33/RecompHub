@@ -1,0 +1,44 @@
+RECOMPHUB — VERSION 1.3.0 (WINDOWS 10/11, 64 bits)
+===================================================
+
+1. Fais clic droit sur RecompHub-Windows-1.3.0.zip > Extraire tout.
+2. Ouvre le dossier extrait.
+3. Double-clique RecompHub.exe.
+
+Il n'y a aucun setup : RecompHub est portable, tu peux le placer dans ton dossier de choix.
+Cette version ne dépend PAS de PowerShell, Python, .NET ou WebView2 pour ouvrir sa fenêtre.
+
+Fonctions :
+  - Ajout de programmes Windows (exe, bat, cmd, lnk, jar)
+  - Scan automatique d'un dossier
+  - Recherche et filtres par catégorie, favoris
+  - Jouer, ouvrir le dossier du jeu, changer son fichier, retirer de la liste
+  - Déposer des exécutables dans la fenêtre pour les ajouter
+  - Mise à jour automatique par GitHub Releases une fois le dépôt publié
+
+Les données sont conservées dans :
+  %LOCALAPPDATA%\RecompHub\library.json
+Elles sont compatibles avec les anciennes versions de RecompHub.
+
+IMPORTANT - MISES À JOUR
+Le programme issu du ZIP local n'a encore aucune adresse de mise à jour.
+Pour activer les mises à jour automatiques, il faut créer et publier une première
+version depuis un dépôt GitHub public. Le code source inclut un workflow GitHub Actions
+qui compile, calcule le SHA-256 et publie les nouvelles versions automatiquement.
+
+SI L'APPLICATION NE S'OUVRE PAS
+Ouvre Diagnostic-RecompHub.cmd dans le dossier extrait.
+Il tente d'ouvrir RecompHub puis crée un rapport local dans Bloc-notes.
+Le diagnostic n'envoie aucune donnée sur Internet. Ne partage pas de chemins
+personnels dans le rapport sans les masquer.
+
+Pour consulter les détails, voir aussi :
+  %LOCALAPPDATA%\RecompHub\startup.log
+  %LOCALAPPDATA%\RecompHub\startup-error.log
+
+Le programme est actuellement non signé numériquement : Windows Defender SmartScreen
+peut afficher un avertissement. Vérifie toujours la provenance avant de l'autoriser.
+
+RECONSTRUCTION DU PROJET :
+Go 1.23+ (aucune bibliothèque externe)
+GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="-H windowsgui -s -w" -o RecompHub.exe main.go

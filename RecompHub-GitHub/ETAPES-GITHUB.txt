@@ -1,0 +1,14 @@
+RECOMPHUB — ENVOI SUR GITHUB (aucune installation requise)
+
+Ton depot : https://github.com/Ironakatina33/RecompHub
+
+1. Decompresse le fichier RecompHub-GitHub.zip sur ton bureau.
+2. Ouvre ton depot GitHub dans ton navigateur.
+3. Clique sur « uploading an existing file » (ou « Add file » > « Upload files »).
+4. Depose les 4 fichiers de ce dossier dans GitHub, en conservant le dossier .github.
+5. Clique sur « Commit changes ».
+6. Ouvre l'onglet Actions et verifie que le workflow « Publier RecompHub Windows » se lance.
+7. Lorsque le workflow a termine, va dans Releases et telecharge l'archive RecompHub-Windows.zip.
+
+Attention : ne mets PAS RecompHub-GitHub.zip lui-meme dans le depot; envoie les fichiers extraits.
+Le programme n'a pas besoin de GitHub pour fonctionner. Cette operation sert aux futures mises a jour.

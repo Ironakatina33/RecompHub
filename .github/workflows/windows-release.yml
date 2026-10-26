@@ -1,69 +1,68 @@
-name: Publier RecompHub v2 Windows
+name: RecompHub v3 - Windows release
 on:
   push:
     branches: [main]
     paths:
       - 'main.go'
+      - 'store.go'
+      - 'window.go'
       - 'go.mod'
       - 'assets/**'
       - '.github/workflows/windows-release.yml'
-      - 'LISEZ-MOI.txt'
   workflow_dispatch:
 permissions:
   contents: write
 concurrency:
-  group: recomphub-windows
+  group: recomphub-windows-release
   cancel-in-progress: false
 jobs:
-  release:
+  windows:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v5
         with:
           go-version: '1.23.x'
-      - name: Build Windows 64-bit application
+      - name: Compiler RecompHub v3
         env:
           REPO: ${{ github.repository }}
           RUN_NUMBER: ${{ github.run_number }}
         run: |
           set -eu
-          mkdir -p dist
-          VERSION="2.0.${RUN_NUMBER}"
+          VERSION="3.0.${RUN_NUMBER}"
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "TAG=v$VERSION" >> "$GITHUB_ENV"
+          mkdir -p dist
           GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath \
             -ldflags="-H windowsgui -s -w -X main.releaseRepo=${REPO} -X main.version=${VERSION}" \
             -o dist/RecompHub.exe .
-      - name: Create SHA256-verified update manifest and ZIP
+      - name: Générer le manifeste et l'archive Windows
         run: |
           python3 - <<'PY'
-          import hashlib, json, os, zipfile
+          import os, json, hashlib, zipfile
           from pathlib import Path
-          file=Path('dist/RecompHub.exe')
+          exe=Path('dist/RecompHub.exe')
           repo=os.environ['GITHUB_REPOSITORY']
           tag=os.environ['TAG']
           version=os.environ['VERSION']
           manifest={
-            'version':version,
-            'url':f'https://github.com/{repo}/releases/download/{tag}/RecompHub.exe',
-            'sha256':hashlib.sha256(file.read_bytes()).hexdigest(),
-            'notes':'RecompHub v2, nouvelle interface et 5 thèmes consoles.'
+              'version':version,
+              'url':f'https://github.com/{repo}/releases/download/{tag}/RecompHub.exe',
+              'sha256':hashlib.sha256(exe.read_bytes()).hexdigest(),
+              'notes':'Thèmes console XMB/Wii, barre personnalisée et boutique GitHub.'
           }
-          Path('dist/latest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
-          with zipfile.ZipFile('dist/RecompHub-Windows.zip', 'w', zipfile.ZIP_DEFLATED) as z:
-            for source, destination in [
-              ('dist/RecompHub.exe','RecompHub.exe'),
-              ('LISEZ-MOI.txt','LISEZ-MOI.txt'),
-              ('Diagnostic-RecompHub.cmd','Diagnostic-RecompHub.cmd')
-            ]:z.write(source,destination)
+          Path('dist/latest.json').write_text(json.dumps(manifest, indent=2),encoding='utf-8')
+          with zipfile.ZipFile('dist/RecompHub-Windows.zip','w',zipfile.ZIP_DEFLATED) as z:
+              z.write(exe,'RecompHub.exe')
+              for f in ['LISEZ-MOI.txt','Diagnostic-RecompHub.cmd']:
+                  if Path(f).exists():z.write(f,f)
           PY
-      - name: Publish release
+      - name: Publier RecompHub
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$TAG" \
             dist/RecompHub.exe dist/RecompHub-Windows.zip dist/latest.json \
             --title "RecompHub $VERSION" \
-            --notes "Interface Windows revue, cinq thèmes, bibliothèque conservée, mises à jour intégrées." \
+            --notes "Thèmes console profonds, boutique officielle GitHub, bibliothèque conservée." \
             --latest --target "$GITHUB_SHA"

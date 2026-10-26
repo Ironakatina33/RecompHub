@@ -1,0 +1,24 @@
+RECOMPHUB v2 - BIBLIOTHEQUE WINDOWS
+=================================
+
+Lancement : extraire le ZIP, puis double-cliquer sur RecompHub.exe.
+Ce n'est pas un site web : l'EXE lance un service 100 % local et ouvre une fenêtre dédiée via Microsoft Edge en mode application. Edge doit être installé sur Windows 10/11.
+Pas de compte, de serveur externe, ou de partage de bibliothèque.
+
+THÈMES : Neon Arcade / XMB Legacy (inspiration PS3) / Blue Horizon (PS4) / Channel Studio (Wii) / Joy Home (Nintendo)
+Changer dans Personnalisation ou via le bouton de thème en haut à droite.
+Les préférences sont conservées dans %LOCALAPPDATA%\RecompHub\library.json.
+
+BIBLIOTHEQUE
+- Ajouter un .exe / .bat / .cmd / .lnk / .jar
+- Scanner un dossier (profondeur limitée et filtres pour les installateurs)
+- Jouer, favoris, tri, recherche et catégories
+- Modifier nom, catégorie, arguments, notes et couverture locale
+- Retirer de la liste sans toucher aux jeux
+
+MISES À JOUR : depuis GitHub Ironakatina33/RecompHub (manifest latest.json + SHA-256).
+Si des versions sont publiées, le bouton de mise à jour permet de les installer sans perdre la bibliothèque.
+
+Si l'app ne s'ouvre pas : consulte %LOCALAPPDATA%\RecompHub\v2.log et vérifie que Microsoft Edge est présent.
+
+Les thèmes sont des créations originales inspirées des styles de navigation console. Aucun visuel ou marque officielle n'est utilisé.

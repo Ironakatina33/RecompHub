@@ -1,6 +1,6 @@
 //go:build windows
 
-// RecompHub v3 - Windows launcher with authentic console-style navigation and a curated store.
+// RecompHub v4 - Windows launcher with authentic console-style navigation and a curated store.
 // Native Go backend, local-only API, and Edge app-mode window.
 package main
 
@@ -33,7 +33,7 @@ import (
 //go:embed assets/*
 var assets embed.FS
 
-var version = "3.0.0"
+var version = "4.0.0"
 var releaseRepo = "Ironakatina33/RecompHub"
 
 const maxSize = 100 << 20
@@ -83,7 +83,7 @@ var browserProcess *os.Process
 var shuttingDown atomic.Bool
 
 func defaults() Library {
-	return Library{Version: 1, Settings: Settings{Sort: "Nom (A-Z)", AutoCheck: true, Theme: "neon"}, Games: []Game{}}
+	return Library{Version: 1, Settings: Settings{Sort: "Nom (A-Z)", AutoCheck: true, Theme: "ps3"}, Games: []Game{}}
 }
 func saveLocked() error {
 	state.lib.Version = 1
@@ -122,7 +122,7 @@ func loadLibrary() {
 		state.lib.Games = []Game{}
 	}
 	if !validTheme(state.lib.Settings.Theme) {
-		state.lib.Settings.Theme = "neon"
+		state.lib.Settings.Theme = "ps3"
 	}
 	for i := range state.lib.Games {
 		if state.lib.Games[i].Category == "" {
@@ -889,7 +889,7 @@ func run() error {
 		return err
 	}
 	var err error
-	logFile, err = os.OpenFile(filepath.Join(state.dir, "v3.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
+	logFile, err = os.OpenFile(filepath.Join(state.dir, "v4.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
 	if err == nil {
 		defer logFile.Close()
 		log.SetOutput(logFile)
@@ -952,7 +952,7 @@ func run() error {
 	}
 	url := state.origin + "/"
 	profile := filepath.Join(state.dir, "web-profile")
-	cmd := exec.Command(edge, "--app="+url, "--user-data-dir="+profile, "--window-size=1440,900", "--no-first-run", "--no-default-browser-check")
+	cmd := exec.Command(edge, "--app="+url, "--user-data-dir="+profile, "--window-size=1360,860", "--no-first-run", "--no-default-browser-check")
 	if err := cmd.Start(); err != nil {
 		return fmt.Errorf("Microsoft Edge n'a pas démarré : %w", err)
 	}
@@ -977,6 +977,6 @@ func main() {
 	}
 	if err := run(); err != nil {
 		log.Printf("ERROR: %s", err)
-		showError("Impossible d'ouvrir RecompHub :\n" + err.Error() + "\n\nJournal : %LOCALAPPDATA%\\RecompHub\\v3.log")
+		showError("Impossible d'ouvrir RecompHub :\n" + err.Error() + "\n\nJournal : %LOCALAPPDATA%\\RecompHub\\v4.log")
 	}
 }

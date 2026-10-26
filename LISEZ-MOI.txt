@@ -1,43 +1,21 @@
-RecompHub v3.0.0 - Windows 10/11 64 bits
-=====================================
+RecompHub v4 - Windows 10/11 64 bits
+==================================
 
-INSTALLATION
-1. Extrais TOUT le ZIP dans un dossier.
-2. Ouvre RecompHub.exe.
-3. Edge doit être présent. L'application ouvre une fenêtre Edge dédiée, pas un site distant.
-4. Tes anciennes données sont conservées dans %LOCALAPPDATA%\RecompHub\library.json.
+1. Décompresse l'archive dans un dossier de ton choix.
+2. Double-clique sur RecompHub.exe (portable).
+3. Si tu avais la v3, ta bibliothèque est conservée automatiquement.
+4. Options > Choisir un thème : XMB (PS3) ou Chaînes (Wii).
 
-THEMES
-- XMB Legacy : catégories horizontales, jeux verticaux, navigation au clavier.
-- Channel Home : grille de 12 chaînes, pages, clic pour ouvrir puis « Démarrer ».
-- Blue Horizon / Joy Home / Neon Arcade : autres modes d'affichage.
-- Thèmes modifiables en un clic, ton choix est mémorisé.
+Flèches : naviguer       Entrée : ouvrir une chaîne ou un jeu
+Échap : retour          Ctrl+K : rechercher un jeu
 
-RACCOURCIS
-- Flèches : navigation dans la bibliothèque.
-- Entrée : afficher la fiche du jeu sélectionné.
-- Échap : revenir ou fermer une fiche.
-- Ctrl+K : rechercher.
+La boutique installe uniquement les archives GitHub des projets sélectionnés.
+Les données commerciales de jeux / ROMs ne sont jamais fournies.
 
-BOUTIQUE
-Le catalogue propose exclusivement des projets sélectionnés dont les téléchargements
-sont résolus depuis les Releases GitHub officielles au moment de l'installation.
-L'installation télécharge un ZIP Windows vers %LOCALAPPDATA%\RecompHub\store,
-le décompresse puis référence le lanceur trouvé sans l'exécuter automatiquement.
-Des ROMs ou fichiers de données des jeux ne sont jamais fournis par RecompHub.
-Tu dois fournir tes propres fichiers de jeu légalement obtenus lorsque nécessaires.
-Les binaires publiés par des tiers ne sont pas garantis sûrs : examine le dépôt avant installation.
+L'application utilise Microsoft Edge en mode app et tente de supprimer la
+barre Windows; selon la version de Microsoft Edge, la suppression peut échouer.
 
-FENETRE WINDOWS
-Le logiciel tente de masquer la barre Edge classique et d'activer les contrôles
-réduire / agrandir / fermer intégrés au thème. Si cette personnalisation n'est pas
-prise en charge sur ton Windows/Edge, la barre de fenêtre habituelle reste disponible.
-
-MISES À JOUR
-L'application vérifie Ironakatina33/RecompHub/releases/latest.
-La publication doit comporter RecompHub.exe et latest.json avec son SHA256.
-Pour publier les versions suivantes, mets à jour les fichiers source et le workflow
-.github/workflows/windows-release.yml dans le dépôt GitHub.
-
-ATTENTION : compilation vérifiée, rendu navigateur vérifié ; comportement natif Windows
-non testé sur un vrai PC dans cet environnement.
+Si le programme ne démarre pas : lancer Diagnostic-RecompHub.cmd.
+Données : %LOCALAPPDATA%\RecompHub\library.json
+Logs : %LOCALAPPDATA%\RecompHub\v4.log
+Dépôt : https://github.com/Ironakatina33/RecompHub

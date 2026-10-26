@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>RecompHub v3</title><link rel="icon" href="/assets/icon.svg"><link rel="stylesheet" href="/assets/style.css"><script>window.RECOMPHUB_TOKEN=__BOOT_TOKEN__;</script><script src="/assets/app.js" defer></script></head>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b2359"><title>RecompHub v4</title>
+<link rel="icon" href="/assets/icon.svg"><link rel="stylesheet" href="/assets/style.css">
+<script>window.RECOMPHUB_TOKEN=__BOOT_TOKEN__;</script><script src="/assets/app.js" defer></script>
+</head>
 <body data-theme="ps3">
-<div class="background"><div class="wave wave-one"></div><div class="wave wave-two"></div><div class="ambient-stars"></div></div>
-<div id="titlebar" class="titlebar" hidden><div id="dragBar" class="dragbar"><span class="window-logo">R<span>✦</span></span><span class="win-brand">RecompHub</span><span class="win-caption">Console Experience</span></div><div class="window-buttons"><button data-win="minimize" title="Réduire" aria-label="Réduire"><svg viewBox="0 0 20 20"><path d="M4 10h12"/></svg></button><button data-win="maximize" title="Agrandir / Restaurer" aria-label="Agrandir / Restaurer"><svg viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10" rx="1"/></svg></button><button class="win-close" data-win="close" title="Fermer" aria-label="Fermer"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div></div>
-<div class="app" id="app"><header class="masthead"><div class="identity"><div class="identity-icon">R<span>✦</span></div><div class="identity-text"><strong>Recomp<span>Hub</span></strong><small>TA CONSOLE, TES JEUX</small></div></div><nav id="topNav" class="quick-nav" aria-label="Navigation principale"><button data-go="library">Bibliothèque</button><button data-go="store">Boutique</button><button data-go="themes">Thèmes</button></nav><div class="status-area"><span id="liveClock">10:24</span><button class="status-icon" data-go="settings" title="Paramètres">⚙</button><button class="current-theme" data-go="themes" id="currentTheme">XMB Legacy <span>⌄</span></button></div></header>
-<main id="mainArea" class="main-area" tabindex="-1"></main>
-<footer class="console-footer" id="consoleFooter"><div class="footer-controls"><span><i class="key-circle">↵</i> Sélectionner</span><span><i class="key-circle">Esc</i> Retour</span><span><i class="key-circle">← →</i> Naviguer</span></div><div id="footStatus" class="footer-status">Aucun fichier de jeu inclus · Projets officiels</div></footer></div>
-<div id="dialogLayer" class="dialog-layer" hidden></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
-</body></html>
+<div id="windowbar" class="windowbar" hidden>
+  <div id="windowdrag" class="windowdrag" title="Déplacer RecompHub"><span class="drag-dot"></span><span class="drag-title">RecompHub</span></div>
+  <div class="win-controls">
+    <button data-win="minimize" title="Réduire" aria-label="Réduire"><svg viewBox="0 0 16 16"><path d="M3 12h10"/></svg></button>
+    <button data-win="maximize" title="Agrandir / restaurer" aria-label="Agrandir / restaurer"><svg viewBox="0 0 16 16"><rect x="3.5" y="3.5" width="9" height="9"/></svg></button>
+    <button class="close" data-win="close" title="Fermer" aria-label="Fermer"><svg viewBox="0 0 16 16"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
+  </div>
+</div>
+<div id="surface" class="surface"><main id="screen" class="screen" tabindex="-1"></main></div>
+<div id="overlay" class="overlay" hidden></div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

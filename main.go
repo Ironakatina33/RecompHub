@@ -1,6 +1,6 @@
 //go:build windows
 
-// RecompHub v2 - Windows launcher with five console-inspired themes.
+// RecompHub v3 - Windows launcher with authentic console-style navigation and a curated store.
 // Native Go backend, local-only API, and Edge app-mode window.
 package main
 
@@ -33,7 +33,7 @@ import (
 //go:embed assets/*
 var assets embed.FS
 
-var version = "2.0.0"
+var version = "3.0.0"
 var releaseRepo = "Ironakatina33/RecompHub"
 
 const maxSize = 100 << 20
@@ -378,6 +378,10 @@ func api(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	switch r.URL.Path {
+	case "/api/store/catalog", "/api/store/install", "/api/store/progress", "/api/store/discover":
+		apiStore(w, r)
+	case "/api/window/status", "/api/window/action":
+		apiWindow(w, r)
 	case "/api/library":
 		state.Lock()
 		v := state.lib
@@ -885,7 +889,7 @@ func run() error {
 		return err
 	}
 	var err error
-	logFile, err = os.OpenFile(filepath.Join(state.dir, "v2.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
+	logFile, err = os.OpenFile(filepath.Join(state.dir, "v3.log"), os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0600)
 	if err == nil {
 		defer logFile.Close()
 		log.SetOutput(logFile)
@@ -953,6 +957,7 @@ func run() error {
 		return fmt.Errorf("Microsoft Edge n'a pas démarré : %w", err)
 	}
 	browserProcess = cmd.Process
+	go attachWindow()
 	log.Printf("ui started with %s", edge)
 	err = cmd.Wait()
 	if shuttingDown.Load() {
@@ -972,6 +977,6 @@ func main() {
 	}
 	if err := run(); err != nil {
 		log.Printf("ERROR: %s", err)
-		showError("Impossible d'ouvrir RecompHub :\n" + err.Error() + "\n\nJournal : %LOCALAPPDATA%\\RecompHub\\v2.log")
+		showError("Impossible d'ouvrir RecompHub :\n" + err.Error() + "\n\nJournal : %LOCALAPPDATA%\\RecompHub\\v3.log")
 	}
 }

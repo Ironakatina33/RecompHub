@@ -1,0 +1,2 @@
+Si RecompHub.exe ne se lance pas, ouvre Diagnostic-RecompHub.cmd.
+Le rapport est généré dans %TEMP% et n'est pas envoyé automatiquement.

@@ -1,24 +1,43 @@
-RECOMPHUB v2 - BIBLIOTHEQUE WINDOWS
-=================================
+RecompHub v3.0.0 - Windows 10/11 64 bits
+=====================================
 
-Lancement : extraire le ZIP, puis double-cliquer sur RecompHub.exe.
-Ce n'est pas un site web : l'EXE lance un service 100 % local et ouvre une fenêtre dédiée via Microsoft Edge en mode application. Edge doit être installé sur Windows 10/11.
-Pas de compte, de serveur externe, ou de partage de bibliothèque.
+INSTALLATION
+1. Extrais TOUT le ZIP dans un dossier.
+2. Ouvre RecompHub.exe.
+3. Edge doit être présent. L'application ouvre une fenêtre Edge dédiée, pas un site distant.
+4. Tes anciennes données sont conservées dans %LOCALAPPDATA%\RecompHub\library.json.
 
-THÈMES : Neon Arcade / XMB Legacy (inspiration PS3) / Blue Horizon (PS4) / Channel Studio (Wii) / Joy Home (Nintendo)
-Changer dans Personnalisation ou via le bouton de thème en haut à droite.
-Les préférences sont conservées dans %LOCALAPPDATA%\RecompHub\library.json.
+THEMES
+- XMB Legacy : catégories horizontales, jeux verticaux, navigation au clavier.
+- Channel Home : grille de 12 chaînes, pages, clic pour ouvrir puis « Démarrer ».
+- Blue Horizon / Joy Home / Neon Arcade : autres modes d'affichage.
+- Thèmes modifiables en un clic, ton choix est mémorisé.
 
-BIBLIOTHEQUE
-- Ajouter un .exe / .bat / .cmd / .lnk / .jar
-- Scanner un dossier (profondeur limitée et filtres pour les installateurs)
-- Jouer, favoris, tri, recherche et catégories
-- Modifier nom, catégorie, arguments, notes et couverture locale
-- Retirer de la liste sans toucher aux jeux
+RACCOURCIS
+- Flèches : navigation dans la bibliothèque.
+- Entrée : afficher la fiche du jeu sélectionné.
+- Échap : revenir ou fermer une fiche.
+- Ctrl+K : rechercher.
 
-MISES À JOUR : depuis GitHub Ironakatina33/RecompHub (manifest latest.json + SHA-256).
-Si des versions sont publiées, le bouton de mise à jour permet de les installer sans perdre la bibliothèque.
+BOUTIQUE
+Le catalogue propose exclusivement des projets sélectionnés dont les téléchargements
+sont résolus depuis les Releases GitHub officielles au moment de l'installation.
+L'installation télécharge un ZIP Windows vers %LOCALAPPDATA%\RecompHub\store,
+le décompresse puis référence le lanceur trouvé sans l'exécuter automatiquement.
+Des ROMs ou fichiers de données des jeux ne sont jamais fournis par RecompHub.
+Tu dois fournir tes propres fichiers de jeu légalement obtenus lorsque nécessaires.
+Les binaires publiés par des tiers ne sont pas garantis sûrs : examine le dépôt avant installation.
 
-Si l'app ne s'ouvre pas : consulte %LOCALAPPDATA%\RecompHub\v2.log et vérifie que Microsoft Edge est présent.
+FENETRE WINDOWS
+Le logiciel tente de masquer la barre Edge classique et d'activer les contrôles
+réduire / agrandir / fermer intégrés au thème. Si cette personnalisation n'est pas
+prise en charge sur ton Windows/Edge, la barre de fenêtre habituelle reste disponible.
 
-Les thèmes sont des créations originales inspirées des styles de navigation console. Aucun visuel ou marque officielle n'est utilisé.
+MISES À JOUR
+L'application vérifie Ironakatina33/RecompHub/releases/latest.
+La publication doit comporter RecompHub.exe et latest.json avec son SHA256.
+Pour publier les versions suivantes, mets à jour les fichiers source et le workflow
+.github/workflows/windows-release.yml dans le dépôt GitHub.
+
+ATTENTION : compilation vérifiée, rendu navigateur vérifié ; comportement natif Windows
+non testé sur un vrai PC dans cet environnement.

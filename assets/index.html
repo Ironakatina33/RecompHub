@@ -1,49 +1,10 @@
-<!doctype html>
-<html lang="fr"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="color-scheme" content="dark light"/><title>RecompHub • Ta collection</title>
-<link rel="icon" href="/assets/icon.svg" type="image/svg+xml" />
-<link rel="stylesheet" href="/assets/style.css"/>
-<script>window.RECOMPHUB_TOKEN=__BOOT_TOKEN__;</script><script src="/assets/app.js" defer></script>
-</head><body data-theme="neon">
-<div class="ambient"></div>
-<div class="app" id="app">
-  <aside class="sidebar">
-    <div class="brand"><div class="brand-logo">R<span class="brand-spark">✦</span></div><div class="brand-wordmark"><strong>Recomp<span>Hub</span></strong><small>TON UNIVERS DE JEUX</small></div></div>
-    <div class="sidebar-section-title">BIBLIOTHÈQUE</div>
-    <nav class="nav-stack" id="navStack" aria-label="Catégories"></nav>
-    <div class="sidebar-section-title nav-middle">COLLECTION</div>
-    <div class="sidebar-stat"><div class="tiny-disc"></div><div><strong id="sidebarCount">0 jeux</strong><small>dans ta bibliothèque</small></div></div>
-    <div class="sidebar-grow"></div>
-    <button class="sidebar-theme" data-action="themes"><span id="miniThemeSymbol">✦</span><span><strong>Personnalisation</strong><small>Changer de thème</small></span><span class="sidebar-chevron">›</span></button>
-    <div class="sidebar-bottom"><div class="online-dot"></div><span>PRÊT À JOUER</span><span class="build-label" id="buildLabel">v2</span></div>
-  </aside>
-  <main class="stage" id="stage">
-    <header class="topbar">
-      <div class="topbar-left"><span class="location-dot"></span><span class="breadcrumb">RECOMPHUB</span><span class="breadcrumb-slash">/</span><span class="breadcrumb-active" id="categoryLabel">Bibliothèque</span></div>
-      <div class="topbar-actions">
-        <span class="clock" id="clock">10:08</span>
-        <button class="top-icon" data-action="updates" title="Vérifier les mises à jour" aria-label="Vérifier les mises à jour" id="updateIcon"><span data-icon="refresh"></span></button>
-        <button class="top-icon" data-action="settings" title="Paramètres" aria-label="Paramètres"><span data-icon="settings"></span></button>
-        <button class="theme-pill" data-action="themes"><span class="pill-blob"></span><span id="currentThemeName">Neon Arcade</span><span data-icon="chevron-down"></span></button>
-      </div>
-    </header>
-    <section class="welcome" id="welcome">
-      <div class="welcome-copy"><div class="eyebrow"><span class="pulse"></span><span id="welcomeEyebrow">TON ESPACE DE JEU</span></div><h1 id="welcomeTitle">Tous tes jeux.<br/><em>Un seul endroit.</em></h1><p id="welcomeDesc">Recompilations, ports PC et launchers réunis dans une bibliothèque faite pour toi.</p>
-      <div class="welcome-cta"><button class="btn primary" id="heroPrimary" data-action="add"><span data-icon="plus"></span><span id="heroPrimaryText">Ajouter un jeu</span></button><button class="btn subtle" data-action="scan"><span data-icon="folder-search"></span>Scanner un dossier</button></div>
-      </div>
-      <div class="hero-visual" aria-hidden="true"><div class="hero-ring hero-ring-one"></div><div class="hero-ring hero-ring-two"></div><div class="hero-symbol"><svg viewBox="0 0 200 200"><path d="M46 34h68c49 0 66 25 66 56 0 25-13 42-40 49l33 35h-48l-42-49h31c20 0 27-9 27-25s-8-26-29-26H89v100H46z" fill="currentColor"/></svg></div><div class="hero-orbit">✧</div></div>
-      <div class="welcome-index">01 <span>/ COLLECTION</span></div>
-    </section>
-    <section class="collection"><div class="section-heading"><div><span class="overline">VOTRE UNIVERS</span><h2 id="sectionTitle">Ma bibliothèque <span class="count-bubble" id="countBubble">00</span></h2></div><div class="section-controls"><div class="search-box"><span data-icon="search"></span><input id="searchInput" type="search" placeholder="Rechercher un jeu..." autocomplete="off" aria-label="Rechercher un jeu"/><kbd>⌘ K</kbd></div><select id="sortSelect" aria-label="Trier les jeux"><option value="recent">Ajouts récents</option><option value="az">Nom A–Z</option><option value="played">Dernière session</option><option value="most">Les plus joués</option></select><button class="small-add" data-action="add" title="Ajouter"><span data-icon="plus"></span></button></div></div>
-      <div class="console-tabs" id="consoleTabs"></div>
-      <div class="games-grid" id="gamesGrid" aria-live="polite"></div>
-      <div class="empty" id="emptyState" hidden><div class="empty-orbit"><span data-icon="gamepad"></span></div><h3 id="emptyTitle">Une collection à créer.</h3><p id="emptyDesc">Ajoute ton premier jeu ou scanne un dossier pour commencer.</p><button class="btn primary" data-action="add"><span data-icon="plus"></span> Ajouter un jeu</button></div>
-    </section>
-    <footer class="foot"><span>RECOMPHUB · TES JEUX, À TA FAÇON.</span><span><span class="foot-indicator"></span> BIBLIOTHÈQUE LOCALE · AUCUN COMPTE REQUIS</span></footer>
-  </main>
-  <div class="console-dock"><span class="dock-word" id="dockWord">RECOMPHUB</span><span id="dockHint">A pour jouer · B pour revenir</span><span class="dock-clock" id="dockClock">10:08</span></div>
-</div>
-<div class="overlay" id="themeOverlay" hidden><div class="modal themes-modal" role="dialog" aria-modal="true" aria-labelledby="themeHeading"><div class="modal-top"><div><span class="overline">FAIS-EN TON UNIVERS</span><h2 id="themeHeading">Choisis ton ambiance.</h2><p>Chaque thème change les couleurs, la navigation et la disposition.</p></div><button class="close" data-action="close-modal" aria-label="Fermer"><span data-icon="x"></span></button></div><div class="theme-gallery" id="themeGallery"></div><div class="modal-foot"><span><span data-icon="check-circle"></span> Changement immédiat · Préférence sauvegardée</span><button class="btn subtle" data-action="close-modal">Terminé</button></div></div></div>
-<div class="overlay" id="editOverlay" hidden><div class="modal edit-modal" role="dialog" aria-modal="true" aria-labelledby="editHeading"><div class="modal-top"><div><span class="overline">BIBLIOTHÈQUE</span><h2 id="editHeading">Personnaliser le jeu</h2><p id="editPath" class="path-truncate"></p></div><button class="close" data-action="close-modal" aria-label="Fermer"><span data-icon="x"></span></button></div><form id="editForm"><div class="form-grid"><label>Nom du jeu<input name="Name" maxlength="140" required/></label><label>Catégorie<select name="Category"><option>Recompilation</option><option>Port PC</option><option>Launcher</option><option>Autre</option></select></label><label class="wide">Arguments de lancement<input name="Args" maxlength="2048" placeholder="Optionnel : --fullscreen"/></label><label class="wide">Notes<textarea name="Notes" maxlength="4096" rows="3" placeholder="Quelques notes sur ce jeu..."></textarea></label></div><div class="modal-foot"><div class="edit-tools"><button type="button" class="btn subtle" data-action="choose-cover"><span data-icon="image"></span> Couverture</button><button type="button" class="btn subtle" data-action="reveal"><span data-icon="folder"></span> Dossier</button><button type="button" class="btn subtle danger" data-action="remove"><span data-icon="trash"></span> Retirer</button></div><button type="submit" class="btn primary"><span data-icon="check"></span> Enregistrer</button></div></form></div></div>
-<div class="overlay" id="settingsOverlay" hidden><div class="modal settings-modal" role="dialog" aria-modal="true" aria-labelledby="settingsHeading"><div class="modal-top"><div><span class="overline">PRÉFÉRENCES</span><h2 id="settingsHeading">Paramètres</h2><p>Une bibliothèque locale, conçue pour Windows.</p></div><button class="close" data-action="close-modal" aria-label="Fermer"><span data-icon="x"></span></button></div><div class="settings-options"><button class="setting-row" data-action="themes"><span class="setting-icon" data-icon="palette"></span><span><strong>Thème d'interface</strong><small id="settingsThemeName">Neon Arcade</small></span><span class="setting-chevron">›</span></button><label class="setting-row"><span class="setting-icon" data-icon="refresh"></span><span><strong>Recherche automatique des mises à jour</strong><small>Vérifier les nouvelles versions au démarrage</small></span><input type="checkbox" id="autoUpdateToggle"/></label><div class="setting-row"><span class="setting-icon" data-icon="hard-drive"></span><span><strong>Collection locale</strong><small>La bibliothèque existante est conservée dans %LOCALAPPDATA%\RecompHub</small></span></div><button class="setting-row" data-action="updates"><span class="setting-icon" data-icon="cloud-download"></span><span><strong>Vérifier les mises à jour</strong><small id="updateStatusText">RecompHub est prêt</small></span><span class="setting-chevron">›</span></button></div><div class="modal-foot"><span>Version <span id="settingsVersion">2.0.0</span></span><button class="btn subtle" data-action="close-modal">Fermer</button></div></div></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light"><title>RecompHub v3</title><link rel="icon" href="/assets/icon.svg"><link rel="stylesheet" href="/assets/style.css"><script>window.RECOMPHUB_TOKEN=__BOOT_TOKEN__;</script><script src="/assets/app.js" defer></script></head>
+<body data-theme="ps3">
+<div class="background"><div class="wave wave-one"></div><div class="wave wave-two"></div><div class="ambient-stars"></div></div>
+<div id="titlebar" class="titlebar" hidden><div id="dragBar" class="dragbar"><span class="window-logo">R<span>✦</span></span><span class="win-brand">RecompHub</span><span class="win-caption">Console Experience</span></div><div class="window-buttons"><button data-win="minimize" title="Réduire" aria-label="Réduire"><svg viewBox="0 0 20 20"><path d="M4 10h12"/></svg></button><button data-win="maximize" title="Agrandir / Restaurer" aria-label="Agrandir / Restaurer"><svg viewBox="0 0 20 20"><rect x="5" y="5" width="10" height="10" rx="1"/></svg></button><button class="win-close" data-win="close" title="Fermer" aria-label="Fermer"><svg viewBox="0 0 20 20"><path d="M5 5l10 10M15 5L5 15"/></svg></button></div></div>
+<div class="app" id="app"><header class="masthead"><div class="identity"><div class="identity-icon">R<span>✦</span></div><div class="identity-text"><strong>Recomp<span>Hub</span></strong><small>TA CONSOLE, TES JEUX</small></div></div><nav id="topNav" class="quick-nav" aria-label="Navigation principale"><button data-go="library">Bibliothèque</button><button data-go="store">Boutique</button><button data-go="themes">Thèmes</button></nav><div class="status-area"><span id="liveClock">10:24</span><button class="status-icon" data-go="settings" title="Paramètres">⚙</button><button class="current-theme" data-go="themes" id="currentTheme">XMB Legacy <span>⌄</span></button></div></header>
+<main id="mainArea" class="main-area" tabindex="-1"></main>
+<footer class="console-footer" id="consoleFooter"><div class="footer-controls"><span><i class="key-circle">↵</i> Sélectionner</span><span><i class="key-circle">Esc</i> Retour</span><span><i class="key-circle">← →</i> Naviguer</span></div><div id="footStatus" class="footer-status">Aucun fichier de jeu inclus · Projets officiels</div></footer></div>
+<div id="dialogLayer" class="dialog-layer" hidden></div><div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body></html>

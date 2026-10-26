@@ -1,36 +1,35 @@
-# RecompHub v2
+# RecompHub v3
 
-Bibliothèque de jeux Windows avec cinq interfaces originales inspirées des grandes consoles : **XMB Legacy**, **Blue Horizon**, **Channel Studio**, **Joy Home** et **Neon Arcade**.
+**RecompHub** — bibliothèque Windows pour ports PC et recompilations, avec des thèmes d'interface hommage aux consoles.
 
-![RecompHub](assets/icon.svg)
+## Inclus
 
-## Lancer l'application
+- **XMB Legacy** : catégories horizontales, navigation verticale et fond animé.
+- **Channel Home** : grille de chaînes inspirée Wii, pagination et écran de démarrage de chaque jeu.
+- **Blue Horizon**, **Joy Home**, **Neon Arcade** : trois autres présentations.
+- Tentative de fenêtre Windows sans barre native avec commandes intégrées (et repli automatique).
+- Bibliothèque locale rétrocompatible (`%LOCALAPPDATA%\RecompHub\library.json`).
+- **Boutique GitHub** : liste blanche de cinq projets open source, métadonnées depuis les releases officielles, installation ZIP Windows pour quatre projets, extraction protégée contre les chemins malveillants, enregistrement du lanceur reconnu.
+- Aucune ROM, image-disque ni ressource commerciale distribuée ; les données des jeux appartiennent à l'utilisateur.
+- Vérification de la version officielle de RecompHub et de l'empreinte SHA256 de son exécutable lors des mises à jour.
 
-Télécharger `RecompHub-Windows.zip` dans l'onglet [Releases](https://github.com/Ironakatina33/RecompHub/releases), extraire et ouvrir `RecompHub.exe`.
+## Compiler pour Windows
 
-**Prérequis :** Windows 10/11 (64 bits) avec Microsoft Edge. La fenêtre est ouverte par Edge en mode application (sans barre d'adresse), tandis que le programme Go tourne localement. L'interface ne nécessite pas de connexion Internet, sauf pour rechercher les mises à jour.
+Go 1.23+ installé. À la racine du projet :
 
-## Fonctionnalités
-
-- Cinq thèmes sélectionnables instantanément, sauvegardés dans la bibliothèque.
-- Ajouter des jeux `.exe`, `.bat`, `.cmd`, `.lnk` et `.jar`.
-- Scanner un dossier, classer par catégorie, chercher et trier.
-- Jouer, marquer des favoris, modifier le nom, les arguments, les notes et la couverture.
-- Compatible avec la bibliothèque des précédentes versions (`%LOCALAPPDATA%\RecompHub\library.json`).
-- Vérifier les mises à jour sur GitHub et installer une nouvelle version après confirmation et vérification SHA-256.
-
-## Compilation
-
-Depuis le dossier contenant `go.mod` :
-
-```bash
-GOOS=windows GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -ldflags="-H windowsgui -s -w -X main.releaseRepo=Ironakatina33/RecompHub -X main.version=2.0.0" -o RecompHub.exe .
+```powershell
+$env:GOOS='windows'; $env:GOARCH='amd64'; $env:CGO_ENABLED='0'
+go build -trimpath -ldflags='-H windowsgui -s -w' -o RecompHub.exe .
 ```
 
-Pas de dépendance Go externe. Tous les fichiers web sont embarqués dans le binaire grâce à `go:embed`.
+Pas besoin de dépendances Go externes. Microsoft Edge est nécessaire pour l'interface.
 
-## Publication GitHub
+## Publier automatiquement
 
-Le fichier `.github/workflows/windows-release.yml` compile une version Windows et publie `RecompHub.exe`, `RecompHub-Windows.zip`, et `latest.json` sur GitHub Releases après une modification sur la branche `main`.
+Remplacer l'ancien `.github/workflows/windows-release.yml` par celui du projet. Le workflow compile **tous** les fichiers Go à la racine, puis publie `RecompHub.exe`, `RecompHub-Windows.zip` et `latest.json` dans Releases.
 
-Les interfaces sont des créations originales **inspirées** des conventions de navigation des consoles, sans reproduire les logos, marques ni ressources graphiques propriétaires.
+Une nouvelle version Windows peut remplacer l'ancienne tout en conservant `library.json`.
+
+## Limites
+
+La sélection automatique du lanceur d'une archive tierce utilise son nom ; vérifie le résultat avant de démarrer. Les ressources du jeu original ne sont pas installées. Le catalogue nécessite Internet et les API GitHub. Les téléchargements tiers ne possèdent pas de SHA256 attesté indépendamment. La barre personnalisée dépend du comportement d'Edge sur Windows.
